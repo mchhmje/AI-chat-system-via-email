@@ -1,9 +1,9 @@
-name: Run Email Bot
+name: Run Email Bot Optimized
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # תריץ את זה כל 5 דקות
-  workflow_dispatch:        # מאפשר גם הרצה ידנית בלחיצת כפתור
+    - cron: '*/5 * * * *'  # כל 5 דקות
+  workflow_dispatch:        # כפתור הפעלה ידנית
 
 jobs:
   run-bot:
@@ -11,22 +11,23 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
+      # התיקון הקריטי: שינוי מ-v2 ל-v5
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          cache: 'pip'
+          cache: 'pip' # עכשיו זה יעבוד!
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
       - name: Run bot script
-        env: # כאן אנחנו מזריקים את הסודות לקוד
+        env: 
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          MY_EMAIL: ${{ secrets.MY_EMAIL}}
-          EMAIL_PASS: ${{ secrets.EMAIL_PASS}}
+          MY_EMAIL: ${{ secrets.MY_EMAIL }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
         run: python bot.py
