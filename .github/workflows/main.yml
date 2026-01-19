@@ -1,0 +1,31 @@
+name: Run Email Bot
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # תריץ את זה כל 5 דקות
+  workflow_dispatch:        # מאפשר גם הרצה ידנית בלחיצת כפתור
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run bot script
+        env: # כאן אנחנו מזריקים את הסודות לקוד
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MY_EMAIL: ${{ secrets.MY_EMAIL}}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS}}
+        run: python bot.py
