@@ -2,7 +2,7 @@ name: Run Email Bot Optimized
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # כל 5 דקות
+    - cron: '*/8 * * * *'  # כל 5 דקות
   workflow_dispatch:        # כפתור הפעלה ידנית
 
 jobs:
