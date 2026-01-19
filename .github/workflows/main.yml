@@ -30,4 +30,4 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MY_EMAIL: ${{ secrets.MY_EMAIL }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        run: python_bot.py
+        run: python python_bot.py
