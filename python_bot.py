@@ -15,7 +15,7 @@ import os
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-MY_EMAIL = os.environ.getMY_EMAIL 
+MY_EMAIL = os.environ.get("MY_EMAIL")
 EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
@@ -385,5 +385,6 @@ main_program()
 
 
 # ==== Functions ====
+
 
 
